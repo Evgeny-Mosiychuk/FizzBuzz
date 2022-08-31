@@ -21,9 +21,12 @@ It correctly bundles React in production mode and optimizes the build for the be
 BackEnd для этого приложения вы можете найти здесь https://github.com/Evgeny-Mosiychuk/FizzBuzzBackend
 
 
-## Сборка докер образа и запуск контейнера
+## Сборка докер образа 
 
 docker build -t fizzbuzz .
+
+## Запуск контейнера
+
 docker run -p 3000:3000 -t fizzbuzz
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
