@@ -14,7 +14,9 @@ code {
 
 input {
   display: block;
-  margin: 10px 90px;
+  justify-content: center;
+  margin: 15px auto;
+  padding: 10px 10px;
   border: 1px solid lightblue;
 }
 
@@ -24,6 +26,10 @@ button {
   font-size: 20px;
   padding: 10px 60px;
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 10px 0;
   cursor: pointer;
+}
+
+button:disabled {
+  background-color: gray;
 }

@@ -1,5 +1,4 @@
 import './App.css';
-import styled from 'styled-components';
 
 import "./App.css";
 import { useState } from "react";
@@ -8,22 +7,18 @@ function App() {
   const [data, setData] = useState("");
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
+  const [alert, setAlert] = useState(false);
 
-  const StyledInput = styled.input`
-  display: block;
-  margin: 10px 90px;
-  border: 1px solid lightblue;
-`;
+  const handleInputChange = (e) => {
+    if (/\D/.test(e.target.value.replace(/\s+/g, ''))) {
+      setAlert(true);
+    } else {
+      setAlert(false);
+    }
+    setData(e.target.value);
+  }
 
-  const StyledButton = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 20px;
-  padding: 10px 60px;
-  border-radius: 5px;
-  margin: 10px 0px;
-  cursor: pointer;
-`;
+  console.log(alert);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +34,7 @@ function App() {
             'Access-Control-Allow-Origin': 'http://localhost:8080',
             'Access-Control-Allow-Credentials': 'true'
           },
-          body: data
+          body: JSON.stringify(Array.from(data.trim().replace(/\s+/g, ' ').split(' ')))
         });
         const da = await res.text();
 
@@ -55,22 +50,27 @@ function App() {
         setMessage("Some error occured");
       }
     } else {
-      setMessage("Введите, пожалуйста, числа через пробел. Буквенные значения не принимаются");
+      setMessage("Введите цифры");
       setResult("");
     }
   };
 
   return (
       <div className="App">
+        <div className="message"><h1>Введите цифры для игры в Fizz Buzz</h1></div>
         <form onSubmit={handleSubmit}>
           <input
               type="text"
               value={data}
-              placeholder="Введите число"
-              onChange={(e) => setData(e.target.value)}
+              placeholder="Введите числа"
+              onChange={handleInputChange}
           />
-          <button type="submit">Send</button>
-          <div className="message">{message ? <p>{message}</p> : null}</div>
+          {alert && <div>Введите только цифры через пробел</div>}
+          <button
+              type="submit"
+              disabled={alert}
+          >Play</button>
+          <div className="message">{message ? <h3>{message}</h3> : null}</div>
         </form>
         <h1>{result}</h1>
       </div>
