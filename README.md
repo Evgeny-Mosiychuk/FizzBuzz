@@ -24,4 +24,4 @@ BackEnd для этого приложения вы можете найти зд
 ## Сборка докер образа и запуск контейнера
 
 docker build -t fizzbuzz .
-docker run -p 8080:8080 -t fizzbuzz
+docker run -p 3000:3000 -t fizzbuzz
