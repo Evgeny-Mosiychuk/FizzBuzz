@@ -25,3 +25,6 @@ BackEnd для этого приложения вы можете найти зд
 
 docker build -t fizzbuzz .
 docker run -p 3000:3000 -t fizzbuzz
+
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
