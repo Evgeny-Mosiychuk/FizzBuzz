@@ -1,4 +1,5 @@
 import './App.css';
+import styled from 'styled-components';
 
 import "./App.css";
 import { useState } from "react";
@@ -8,9 +9,25 @@ function App() {
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
 
+  const StyledInput = styled.input`
+  display: block;
+  margin: 10px 90px;
+  border: 1px solid lightblue;
+`;
+
+  const StyledButton = styled.button`
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+`;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const valid = data.split(' ').every(item => isNumber(item));
+    const valid = data.trim().replace(/\s+/g, ' ').split(' ').every(item => isNumber(item));
     console.log(valid);
     if (valid) {
       try {
